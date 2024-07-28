@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <title>Form</title>
+</head>
+<body>
+    
+    <section class="h-screen">
+       
+        <div class="2xl:container mx-auto h-screen">
+            
+            <div class="w-[60%] mx-auto h-screen flex flex-col justify-center items-center">
+              
+                <div class=" p-11 rounded-lg">
+
+                <div class="flex flex-col justify-center items-center bg-gradient-to-b from-[#faa0b6] via-[#d18cbb] to-[#a877bd]  px-7 py-7 rounded-lg">
+                    
+                    <form action="" id="form">
+                    
+                        <div class="flex flex-col justify-center items-center gap-y-6">
+                            <div class="flex flex-col justify-start items-start gap-y-2 ">
+                                <label for="pass" class="text-white font-bold">NEW PASSWROD</label>
+            
+                                <input type="password" id="pass" placeholder="create new password" class="px-1 border border-solid border-black">
+                           
+                                <p id="pass1Err"></p>
+                            </div>
+            
+                            <div class="flex flex-col justify-start items-start  gap-y-2 ">
+                                <label for="pass2"  class="text-white font-bold">CONFIRM PASSWORD</label>
+            
+                                <input type="password" id="pass2" placeholder="confirm new password" class="px-2 border border-solid border-black">
+
+                                <p id="pass2Err"></p>
+                            </div>
+    
+                            <div class="flex flex-col justify-start items-start  gap-y-2 ">
+                                <button class="border border-solid border-[#007cf7] px-4 py-2 rounded-lg bg-[#007cf7] text-white">Update</button>
+                            </div>
+
+                            <div>
+                                <p id="both"></p>
+                            </div>
+                    
+                        </div>
+                    
+                    </form>
+                </div>
+              
+            </div>
+            
+        </div>
+        
+    </div>
+    
+</section>
+
+    <!--JS-->
+
+    <script>
+
+        //to prevent reload
+        const form=document.getElementById("form");
+
+        const pass=document.getElementById("pass");
+
+        const pass2=document.getElementById("pass2");
+
+        const both=document.getElementById("both");
+
+
+
+        const pass1Err = document.getElementById("pass1Err");
+
+        const pass2Err = document.getElementById("pass2Err");
+
+        //blur       
+        pass.addEventListener("blur",(e)=>{
+           if(pass.value === ""){
+            pass1Err.textContent="required"
+            pass1Err.style.color="red"
+           } else {
+             pass1Err.textContent=""
+           }
+        })
+
+        pass2.addEventListener("blur",(e)=>{
+           console.log(e.target.value)
+
+           if(pass2.value === ""){
+            pass2Err.textContent="required"
+            pass2Err.style.color="red"
+           } else {
+             pass2Err.textContent=""
+           }
+        })
+
+        
+
+        const valForm = (pass1,pass2)=>{
+
+       // console.log(pass1 === pass2)    
+
+
+        if(pass1 === pass2 ){
+            console.log("password verified")
+            both.textContent="";
+        } else {
+            console.log("invalid password")
+            both.textContent="both password must be same";
+            both.style.color="red"
+        }
+
+        
+        
+      
+            
+        }
+
+        const saveForm = ()=>{
+            
+        }
+
+        form.addEventListener("submit",(sub)=>{
+
+            sub.preventDefault()
+
+            valForm(pass.value,pass2.value);
+        })
+
+        
+    </script>
+
+</body>
+</html>
